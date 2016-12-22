@@ -199,12 +199,931 @@
 # ----------------------------------------------------------------------------------------------------------------------
 
 # Exercise 13: Parameters, Unpacking, Variables-------------------------------------------------------------------------
-from sys import argv
+# from sys import argv
+#
+# script, first, second, third = argv
+#
+# print "The script is called:", script
+# print "Your first variable is:", first
+# print "Your second variable is:", second
+# print "Your third variable is:", third
+# ----------------------------------------------------------------------------------------------------------------------
 
-script, first, second, third = argv
+# Exercise 14: Prompting and Passing------------------------------------------------------------------------------------
+# from sys import argv
+#
+# script, user_name = argv
+# prompt = '> '
+#
+# print "Hi %s, I'm the %s script." % (user_name, script)
+# print "I'd like to ask you a few questions."
+# print "Do you like me %s?" % user_name
+# likes = raw_input(prompt)
+#
+# print "Where do you live %s?" % user_name
+# lives = raw_input(prompt)
+#
+# print "What kind of computer do you have?"
+# computer = raw_input(prompt)
+#
+# print """
+# Alright, so you said %r about liking me.
+# You live in %r.  Not sure where that is.
+# And you have a %r computer.  Nice.
+# """ % (likes, lives, computer)
+# ----------------------------------------------------------------------------------------------------------------------
 
-print "The script is called:", script
-print "Your first variable is:", first
-print "Your second variable is:", second
-print "Your third variable is:", third
+# Exercise 15: Reading Files--------------------------------------------------------------------------------------------
+# from sys import argv
+#
+# script, filename = argv
+# # For now just understand that sys is a package, and this phrase just says to get the argv feature from that package.
+# # You'll learn more about these later.
+# txt = open(filename)
+#
+# print "Here's your file %r:" % filename
+# print txt.read()
+#
+# print "Type the filename again:"
+# file_again = raw_input("> ")
+#
+# txt_again = open(file_again)
+#
+# print txt_again.read()
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 16: Reading and Writing Files--------------------------------------------------------------------------------
+# from sys import argv
+#
+# script, filename = argv
+#
+# print "We're going to erase %r." % filename
+# print "If you don't want that, hit CTRL-C (^C)."
+# print "If you do want that, hit RETURN."
+#
+# raw_input("?")
+#
+# print "Opening the file..."
+# target = open(filename, 'w')
+#
+# print "Truncating the file.  Goodbye!"
+# target.truncate()
+#
+# print "Now I'm going to ask you for three lines."
+#
+# line1 = raw_input("line 1: ")
+# line2 = raw_input("line 2: ")
+# line3 = raw_input("line 3: ")
+#
+# print "I'm going to write these to the file."
+#
+# target.write(line1)
+# target.write("\n")
+# target.write(line2)
+# target.write("\n")
+# target.write(line3)
+# target.write("\n")
+# # It's really just a string with a character in it for the kind of mode for the file.
+# # If you use 'w' then you're saying "open this file in 'write' mode," thus the 'w' character.
+# # There's also 'r' for "read," 'a' for append, and modifiers on these.
+#
+# # The most important one to know for now is the + modifier, so you can do 'w+', 'r+', and 'a+'.
+# # This will open the file in both read and write mode, and depending on the character use position the file
+# # in different ways.
+#
+# print "And finally, we close it."
+# target.close()
+#
+# # close -- Closes the file. Like File->Save.. in your editor.
+# # read -- Reads the contents of the file. You can assign the result to a variable.
+# # readline -- Reads just one line of a text file.
+# # truncate -- Empties the file. Watch out if you care about the file.
+# # write('stuff') -- Writes "stuff" to the file.
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 17: More Files-----------------------------------------------------------------------------------------------
+# from sys import argv
+# from os.path import exists
+#
+# script, from_file, to_file = argv
+#
+# print "Copying from %s to %s" % (from_file, to_file)
+#
+# # we could do these two on one line, how?
+# in_file = open(from_file)
+# indata = in_file.read()
+#
+# print "The input file is %d bytes long" % len(indata)
+#
+# print "Does the output file exist? %r" % exists(to_file)
+# print "Ready, hit RETURN to continue, CTRL-C to abort."
+# raw_input()
+#
+# out_file = open(to_file, 'w')
+# out_file.write(indata)
+#
+# print "Alright, all done."
+#
+# out_file.close()
+# in_file.close()
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 18: Names, Variables, Code, Functions------------------------------------------------------------------------
+# this one is like your scripts with argv
+# You can create a function by using the word def in Python
+
+
+# def print_two(*args):
+#     arg1, arg2 = args
+#     print "arg1: %r, arg2: %r" % (arg1, arg2)
+# # What does the * in *args do?
+# # That tells Python to take all the arguments to the function and then put them in args as a list.
+# # It's like argv that you've been using, but for functions.
+# It's not normally used too often unless specifically needed.
+#
+#
+# # ok, that *args is actually pointless, we can just do this
+# def print_two_again(arg1, arg2):
+#     print "arg1: %r, arg2: %r" % (arg1, arg2)
+#
+#
+# # this just takes one argument
+# def print_one(arg1):
+#     print "arg1: %r" % arg1
+#
+#
+# # this one takes no arguments
+# def print_none():
+#     print "I got nothin'."
+#
+#
+# print_two("Zed","Shaw")
+# print_two_again("Zed", "Shaw")
+# print_one("First!")
+# print_none()
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 19: Functions and Variables----------------------------------------------------------------------------------
+# def cheese_and_crackers(cheese_count, boxes_of_crackers):
+#     print "You have %d cheeses!" % cheese_count
+#     print "You have %d boxes of crackers!" % boxes_of_crackers
+#     print "Man that's enough for a party!"
+#     print "Get a blanket.\n"
+#
+#
+# print "We can just give the function numbers directly:"
+# cheese_and_crackers(20, 30)
+#
+#
+# print "OR, we can use variables from our script:"
+# amount_of_cheese = 10
+# amount_of_crackers = 50
+#
+# cheese_and_crackers(amount_of_cheese, amount_of_crackers)
+#
+#
+# print "We can even do math inside too:"
+# cheese_and_crackers(10 + 20, 5 + 6)
+#
+#
+# print "And we can combine the two, variables and math:"
+# cheese_and_crackers(amount_of_cheese + 100, amount_of_crackers + 1000)
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 20: Functions and Files--------------------------------------------------------------------------------------
+# from sys import argv
+#
+# script, input_file = argv
+#
+#
+# def print_all(f):
+#     print f.read()
+#
+#
+# def rewind(f):
+#     f.seek(0)   # 读完一次需要像磁带一样倒带重读
+#
+#
+# def print_a_line(line_count, f):
+#     print line_count, f.readline()
+#
+# current_file = open(input_file)
+#
+# print "First let's print the whole file:\n"
+#
+# print_all(current_file)
+#
+# print "Now let's rewind, kind of like a tape."
+#
+# rewind(current_file)
+#
+# print "Let's print three lines:"
+#
+# current_line = 1
+# print_a_line(current_line, current_file)
+#
+# current_line += 1
+# print_a_line(current_line, current_file)
+#
+# current_line += 1
+# print_a_line(current_line, current_file)
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 21: Functions Can Return Something---------------------------------------------------------------------------
+# def add(a, b):
+#     print "ADDING %d + %d" % (a, b)
+#     return a + b
+#
+#
+# def subtract(a, b):
+#     print "SUBTRACTING %d - %d" % (a, b)
+#     return a - b
+#
+#
+# def multiply(a, b):
+#     print "MULTIPLYING %d * %d" % (a, b)
+#     return a * b
+#
+#
+# def divide(a, b):
+#     print "DIVIDING %d / %d" % (a, b)
+#     return a / b
+#
+#
+# print "Let's do some math with just functions!"
+#
+# age = add(30, 5)
+# height = subtract(78, 4)
+# weight = multiply(90, 2)
+# iq = divide(100, 2)
+#
+# print "Age: %d, Height: %d, Weight: %d, IQ: %d" % (age, height, weight, iq)
+#
+#
+# # A puzzle for the extra credit, type it in anyway.
+# print "Here is a puzzle."
+#
+# what = add(age, subtract(height, multiply(weight, divide(iq, 2))))
+#
+# print "That becomes: ", what, "Can you do it by hand?"
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 24: More Practice--------------------------------------------------------------------------------------------
+# print "Let's practice everything."
+# print 'You\'d need to know \'bout escapes with \\ that do \n newlines and \t tabs.'
+#
+# poem = """
+# \tThe lovely world
+# with logic so firmly planted
+# cannot discern \n the needs of love
+# nor comprehend passion from intuition
+# and requires an explanation
+# \n\t\twhere there is none.
+# """
+#
+# print "--------------"
+# print poem
+# print "--------------"
+#
+#
+# five = 10 - 2 + 3 - 6
+# print "This should be five: %s" % five
+#
+#
+# def secret_formula(started):
+#     jelly_beans = started * 500
+#     jars_ = jelly_beans / 1000
+#     crates_ = jars_ / 100
+#     return jelly_beans, jars_, crates_
+#
+#
+# start_point = 10000
+# beans, jars, crates = secret_formula(start_point)
+#
+# print "With a starting point of: %d" % start_point
+# print "We'd have %d beans, %d jars, and %d crates." % (beans, jars, crates)
+#
+# start_point /= 10
+#
+# print "We can also do that this way:"
+# print "We'd have %d beans, %d jars, and %d crates." % secret_formula(start_point)
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 25: Even More Practice---------------------------------------------------------------------------------------
+# def break_words(stuff):
+#     """This function will break up words for us."""
+#     words = stuff.split(' ')
+#     return words
+#
+#
+# def sort_words(words):
+#     """Sorts the words."""
+#     return sorted(words)
+#
+#
+# def print_first_word(words):
+#     """Prints the first word after popping it off."""
+#     word = words.pop(0)
+#     print word
+#
+#
+# def print_last_word(words):
+#     """Prints the last word after popping it off."""
+#     word = words.pop(-1)
+#     print word
+#
+#
+# def sort_sentence(sentence):
+#     """Takes in a full sentence and returns the sorted words."""
+#     words = break_words(sentence)
+#     return sort_words(words)
+#
+#
+# def print_first_and_last(sentence):
+#     """Prints the first and last words of the sentence."""
+#     words = break_words(sentence)
+#     print_first_word(words)
+#     print_last_word(words)
+#
+#
+# def print_first_and_last_sorted(sentence):
+#     """Sorts the words then prints the first and last one."""
+#     words = sort_sentence(sentence)
+#     print_first_word(words)
+#     print_last_word(words)
+#
+#
+# sentence = "I want to sleep"
+# words = break_words(sentence)
+# print words
+# print len(words)  # get size
+# words.pop(0)
+# print len(words)
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 25: Even More Practice---------------------------------------------------------------------------------------
+# print True and 1
+# print 3 != 4 and 4 != 7
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 29: What If--------------------------------------------------------------------------------------------------
+# people = 20
+# cats = 30
+# dogs = 15
+#
+#
+# if people < cats:
+#     print "Too many cats! The world is doomed!"
+#
+# if people > cats:
+#     print "Not many cats! The world is saved!"
+#
+# if people < dogs:
+#     print "The world is drooled on!"
+#
+# if people > dogs:
+#     print "The world is dry!"
+#
+#
+# dogs += 5
+#
+# if people >= dogs:
+#     print "People are greater than or equal to dogs."
+#
+# if people <= dogs:
+#     print "People are less than or equal to dogs."
+#
+#
+# if people == dogs:
+#     print "People are dogs."
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 30: Else and If----------------------------------------------------------------------------------------------
+# people = 30
+# cars = 40
+# trucks = 15
+#
+#
+# if cars > people:
+#     print "We should take the cars."
+# elif cars < people:
+#     print "We should not take the cars."
+# else:
+#     print "We can't decide."
+#
+# if trucks > cars:
+#     print "That's too many trucks."
+# elif trucks < cars:
+#     print "Maybe we could take the trucks."
+# else:
+#     print "We still can't decide."
+#
+# if people > trucks:
+#     print "Alright, let's just take the trucks."
+# else:
+#     print "Fine, let's stay home then."
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 31: Making Decisions-----------------------------------------------------------------------------------------
+# print "You enter a dark room with two doors.  Do you go through door #1 or door #2?"
+#
+# door = raw_input("> ")
+#
+# if door == "1":
+#     print "There's a giant bear here eating a cheese cake.  What do you do?"
+#     print "1. Take the cake."
+#     print "2. Scream at the bear."
+#
+#     bear = raw_input("> ")
+#
+#     if bear == "1":
+#         print "The bear eats your face off.  Good job!"
+#     elif bear == "2":
+#         print "The bear eats your legs off.  Good job!"
+#     else:
+#         print "Well, doing %s is probably better.  Bear runs away." % bear
+#
+# elif door == "2":
+#     print "You stare into the endless abyss at Cthulhu's retina."
+#     print "1. Blueberries."
+#     print "2. Yellow jacket clothespins."
+#     print "3. Understanding revolvers yelling melodies."
+#
+#     insanity = raw_input("> ")
+#
+#     if insanity == "1" or insanity == "2":
+#         print "Your body survives powered by a mind of jello.  Good job!"
+#     else:
+#         print "The insanity rots your eyes into a pool of muck.  Good job!"
+#
+# else:
+#     print "You stumble around and fall on a knife and die.  Good job!"
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 32: Loops and Lists------------------------------------------------------------------------------------------
+# the_count = [1, 2, 3, 4, 5]
+# fruits = ['apples', 'oranges', 'pears', 'apricots']
+# change = [1, 'pennies', 2, 'dimes', 3, 'quarters']
+#
+# # this first kind of for-loop goes through a list
+# for number in the_count:
+#     print "This is count %d" % number
+#
+# # same as above
+# for fruit in fruits:
+#     print "A fruit of type: %s" % fruit
+#
+# # also we can go through mixed lists too
+# # notice we have to use %r since we don't know what's in it
+# for i in change:
+#     print "I got %r" % i
+#
+# # we can also build lists, first start with an empty one
+# elements = []
+#
+# # then use the range function to do 0 to 5 counts
+# for i in range(0, 6):
+#     print "Adding %d to the list." % i
+#     # append is a function that lists understand
+#     elements.append(i)
+#
+# # now we can print them out too
+# for i in elements:
+#     print "Element was: %d" % i
+#
+# lines = [[1, 2, 3], [6, 5, 4]]
+# for i in lines:
+#     for j in i:
+#         print j
+# print lines[0][0]  # 和C++ vector用法一样
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 33: While Loops----------------------------------------------------------------------------------------------
+# i = 0
+# numbers = []
+#
+# while i < 6:
+#     print "At the top i is %d" % i
+#     numbers.append(i)
+#
+#     i += 1
+#     print "Numbers now: ", numbers
+#     print "At the bottom i is %d" % i
+#
+#
+# print "The numbers: "
+#
+# for num in numbers:
+#     print num
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 34: Accessing Elements of Lists------------------------------------------------------------------------------
+# animals = ['bear', 'tiger', 'penguin', 'zebra']
+# print animals[1]
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 35: Branches and Functions-----------------------------------------------------------------------------------
+# from sys import exit
+#
+#
+# def gold_room():
+#     print "This room is full of gold.  How much do you take?"
+#
+#     choice = raw_input("> ")
+#     if "0" in choice or "1" in choice:
+#         how_much = int(choice)
+#     else:
+#         dead("Man, learn to type a number.")
+#
+#     if how_much < 50:
+#         print "Nice, you're not greedy, you win!"
+#         exit(0)
+#     else:
+#         dead("You greedy bastard!")
+#
+#
+# def bear_room():
+#     print "There is a bear here."
+#     print "The bear has a bunch of honey."
+#     print "The fat bear is in front of another door."
+#     print "How are you going to move the bear?"
+#     bear_moved = False
+#
+#     while True:
+#         choice = raw_input("> ")
+#
+#         if choice == "take honey":
+#             dead("The bear looks at you then slaps your face off.")
+#         elif choice == "taunt bear" and not bear_moved:
+#             print "The bear has moved from the door. You can go through it now."
+#             bear_moved = True
+#         elif choice == "taunt bear" and bear_moved:
+#             dead("The bear gets pissed off and chews your leg off.")
+#         elif choice == "open door" and bear_moved:
+#             gold_room()
+#         else:
+#             print "I got no idea what that means."
+#
+#
+# def cthulhu_room():
+#     print "Here you see the great evil Cthulhu."
+#     print "He, it, whatever stares at you and you go insane."
+#     print "Do you flee for your life or eat your head?"
+#
+#     choice = raw_input("> ")
+#
+#     if "flee" in choice:
+#         start()
+#     elif "head" in choice:
+#         dead("Well that was tasty!")
+#     else:
+#         cthulhu_room()
+#
+#
+# def dead(why):
+#     print why, "Good job!"
+#     exit(0)
+#
+#
+# def start():
+#     print "You are in a dark room."
+#     print "There is a door to your right and left."
+#     print "Which one do you take?"
+#
+#     choice = raw_input("> ")
+#
+#     if choice == "left":
+#         bear_room()
+#     elif choice == "right":
+#         cthulhu_room()
+#     else:
+#         dead("You stumble around the room until you starve.")
+#
+#
+# start()
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 36: Designing and Debugging----------------------------------------------------------------------------------
+# https://learnpythonthehardway.org/book/ex37.html
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 38: Doing Things to Lists------------------------------------------------------------------------------------
+# ten_things = "Apples Oranges Crows Telephone Light Sugar"
+#
+# print "Wait there are not 10 things in that list. Let's fix that."
+#
+# stuff = ten_things.split(' ')
+# more_stuff = ["Day", "Night", "Song", "Frisbee", "Corn", "Banana", "Girl", "Boy"]
+#
+# while len(stuff) != 10:
+#     next_one = more_stuff.pop()
+#     print "Adding: ", next_one
+#     stuff.append(next_one)
+#     print "There are %d items now." % len(stuff)
+#
+# print "There we go: ", stuff
+#
+# print "Let's do some things with stuff."
+#
+# print stuff[1]
+# print stuff[-1]  # whoa! fancy
+# print stuff.pop()
+# print ' '.join(stuff)  # what? cool!
+# print '#'.join(stuff[3:5])  # super stellar!
+# # That extracts a "slice" from the stuff list that is from element 3 to element 4, meaning it does not include element
+# #  5. It's similar to how range(3,5) would work.
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 39: Dictionaries, Oh Lovely Dictionaries---------------------------------------------------------------------
+# create a basic set of states and some cities in them
+# cities = {
+#     'CA': 'San Francisco',
+#     'MI': 'Detroit',
+#     'FL': 'Jacksonville'
+# }
+#
+# # create a mapping of state to abbreviation
+# states = {
+#     'Oregon': 'OR',
+#     'Florida': 'FL',
+#     'California': 'CA',
+#     'New York': 'NY',
+#     'Michigan': 'MI'
+# }
+#
+# # add some more cities
+# cities['NY'] = 'New York'
+# cities['OR'] = 'Portland'
+#
+# # print out some cities
+# print '-' * 10
+# print "NY State has: ", cities['NY']
+# print "OR State has: ", cities['OR']
+#
+# # print some states
+# print '-' * 10
+# print "Michigan's abbreviation is: ", states['Michigan']
+# print "Florida's abbreviation is: ", states['Florida']
+#
+# # do it by using the state then cities dict
+# print '-' * 10
+# print "Michigan has: ", cities[states['Michigan']]
+# print "Florida has: ", cities[states['Florida']]
+#
+# # print every state abbreviation
+# print '-' * 10
+# for state, abbrev in states.items():
+#     print "%s is abbreviated %s" % (state, abbrev)
+#
+# # print every city in state
+# print '-' * 10
+# for abbrev, city in cities.items():
+#     print "%s has the city %s" % (abbrev, city)
+#
+# # now do both at the same time
+# print '-' * 10
+# for state, abbrev in states.items():
+#     print "%s state is abbreviated %s and has city %s" % (
+#         state, abbrev, cities[abbrev])
+#
+# print '-' * 10
+# # safely get a abbreviation by state that might not be there
+# state = states.get('Texas')
+#
+# if not state:
+#     print "Sorry, no Texas."
+#
+# # get a city with a default value
+# city = cities.get('TX', 'Does Not Exist')
+# print "The city for the state 'TX' is: %s" % city
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 40: Modules, Classes, and Objects----------------------------------------------------------------------------
+# class Song(object):
+#
+#     def __init__(self, lyrics):
+#         self.lyrics = lyrics
+#
+#     def sing_me_a_song(self):
+#         for line in self.lyrics:
+#             print line
+#
+# happy_bday = Song(["Happy birthday to you",
+#                    "I don't want to get sued",
+#                    "So I'll stop right there"])
+#
+# bulls_on_parade = Song(["They rally around tha family",
+#                         "With pockets full of shells"])
+#
+# happy_bday.sing_me_a_song()
+#
+# bulls_on_parade.sing_me_a_song()
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 41: Learning To Speak Object Oriented------------------------------------------------------------------------
+# import random
+# from urllib import urlopen
+# import sys
+#
+# WORD_URL = "http://learncodethehardway.org/words.txt"
+# WORDS = []
+#
+# PHRASES = {
+#     "class %%%(%%%):":
+#       "Make a class named %%% that is-a %%%.",
+#     "class %%%(object):\n\tdef __init__(self, ***)" :
+#       "class %%% has-a __init__ that takes self and *** parameters.",
+#     "class %%%(object):\n\tdef ***(self, @@@)":
+#       "class %%% has-a function named *** that takes self and @@@ parameters.",
+#     "*** = %%%()":
+#       "Set *** to an instance of class %%%.",
+#     "***.***(@@@)":
+#       "From *** get the *** function, and call it with parameters self, @@@.",
+#     "***.*** = '***'":
+#       "From *** get the *** attribute and set it to '***'."
+# }
+#
+# # do they want to drill phrases first
+# if len(sys.argv) == 2 and sys.argv[1] == "english":
+#     PHRASE_FIRST = True
+# else:
+#     PHRASE_FIRST = False
+#
+# # load up the words from the website
+# for word in urlopen(WORD_URL).readlines():
+#     WORDS.append(word.strip())
+#
+#
+# def convert(snippet, phrase):
+#     class_names = [w.capitalize() for w in
+#                    random.sample(WORDS, snippet.count("%%%"))]
+#     other_names = random.sample(WORDS, snippet.count("***"))
+#     results = []
+#     param_names = []
+#
+#     for i in range(0, snippet.count("@@@")):
+#         param_count = random.randint(1,3)
+#         param_names.append(', '.join(random.sample(WORDS, param_count)))
+#
+#     for sentence in snippet, phrase:
+#         result = sentence[:]
+#
+#         # fake class names
+#         for word in class_names:
+#             result = result.replace("%%%", word, 1)
+#
+#         # fake other names
+#         for word in other_names:
+#             result = result.replace("***", word, 1)
+#
+#         # fake parameter lists
+#         for word in param_names:
+#             result = result.replace("@@@", word, 1)
+#
+#         results.append(result)
+#
+#     return results
+#
+#
+# # keep going until they hit CTRL-D
+# try:
+#     while True:
+#         snippets = PHRASES.keys()
+#         random.shuffle(snippets)
+#
+#         for snippet in snippets:
+#             phrase = PHRASES[snippet]
+#             question, answer = convert(snippet, phrase)
+#             if PHRASE_FIRST:
+#                 question, answer = answer, question
+#
+#             print question
+#
+#             raw_input("> ")
+#             print "ANSWER:  %s\n\n" % answer
+# except EOFError:
+#     print "\nBye"
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 42: Is-A, Has-A, Objects, and Classes------------------------------------------------------------------------
+# Animal is-a object (yes, sort of confusing) look at the extra credit
+# class Animal(object):
+#     pass
+#
+#
+# # ??
+# class Dog(Animal):
+#
+#     def __init__(self, name):
+#         # ??
+#         self.name = name
+#
+#
+# # ??
+# class Cat(Animal):
+#
+#     def __init__(self, name):
+#         # ??
+#         self.name = name
+#
+#
+# # ??
+# class Person(object):
+#
+#     def __init__(self, name):
+#         # ??
+#         self.name = name
+#
+#         # Person has-a pet of some kind
+#         self.pet = None
+#
+#     # That makes sure that the self.pet attribute of that class is set to a default of None.
+#
+#
+# # ??
+# class Employee(Person):
+#
+#     def __init__(self, name, salary):
+#         # ?? hmm what is this strange magic?
+#         super(Employee, self).__init__(name)  # super继承 Person的初始化
+#         # ??
+#         self.salary = salary
+#
+#
+# # ??
+# class Fish(object):
+#     pass
+#
+#
+# # ??
+# class Salmon(Fish):
+#     pass
+#
+#
+# # ??
+# class Halibut(Fish):
+#     pass
+#
+#
+# # rover is-a Dog
+# rover = Dog("Rover")
+# # ??
+# satan = Cat("Satan")
+#
+# # ??
+# mary = Person("Mary")
+#
+# # ??
+# mary.pet = satan
+#
+# # ??
+# frank = Employee("Frank", 120000)
+#
+# # ??
+# frank.pet = rover
+#
+# # ??
+# flipper = Fish()
+#
+# # ??
+# crouse = Salmon()
+#
+# # ??
+# harry = Halibut()
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Exercise 44: Inheritance Versus Composition---------------------------------------------------------------------------
+class Parent(object):
+
+    def override(self):
+        print "PARENT override()"
+
+    def implicit(self):
+        print "PARENT implicit()"
+
+    def altered(self):
+        print "PARENT altered()"
+
+
+class Child(Parent):
+
+    def override(self):
+        print "CHILD override()"
+
+    def altered(self):
+        print "CHILD, BEFORE PARENT altered()"
+        super(Child, self).altered()
+        print "CHILD, AFTER PARENT altered()"
+
+dad = Parent()
+son = Child()
+
+dad.implicit()
+son.implicit()
+
+dad.override()
+son.override()
+
+dad.altered()
+son.altered()
 # ----------------------------------------------------------------------------------------------------------------------
