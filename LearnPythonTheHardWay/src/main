@@ -1093,37 +1093,60 @@
 # ----------------------------------------------------------------------------------------------------------------------
 
 # Exercise 44: Inheritance Versus Composition---------------------------------------------------------------------------
-class Parent(object):
+# class Parent(object):
+#
+#     def override(self):
+#         print "PARENT override()"
+#
+#     def implicit(self):
+#         print "PARENT implicit()"
+#
+#     def altered(self):
+#         print "PARENT altered()"
+#
+#
+# class Child(Parent):
+#
+#     def override(self):
+#         print "CHILD override()"
+#
+#     def altered(self):
+#         print "CHILD, BEFORE PARENT altered()"
+#         super(Child, self).altered()
+#         print "CHILD, AFTER PARENT altered()"
+#
+# dad = Parent()
+# son = Child()
+#
+# dad.implicit()
+# son.implicit()
+#
+# dad.override()
+# son.override()
+#
+# dad.altered()
+# son.altered()
+# ----------------------------------------------------------------------------------------------------------------------
 
-    def override(self):
-        print "PARENT override()"
-
-    def implicit(self):
-        print "PARENT implicit()"
-
-    def altered(self):
-        print "PARENT altered()"
-
-
-class Child(Parent):
-
-    def override(self):
-        print "CHILD override()"
-
-    def altered(self):
-        print "CHILD, BEFORE PARENT altered()"
-        super(Child, self).altered()
-        print "CHILD, AFTER PARENT altered()"
-
-dad = Parent()
-son = Child()
-
-dad.implicit()
-son.implicit()
-
-dad.override()
-son.override()
-
-dad.altered()
-son.altered()
+# Exercise 51: Getting Input from a Browser-----------------------------------------------------------------------------
+# import web
+#
+# urls = (
+#   '/hello', 'Index'
+# )
+#
+#
+# app = web.application(urls, globals())
+#
+# render = web.template.render('templates/')
+#
+# class Index(object):
+#     def GET(self):
+#         form = web.input(name="Nobody")
+#         greeting = "Hello, %s" % form.name
+#
+#         return render.index(greeting = greeting)
+#
+# if __name__ == "__main__":
+#     app.run()
 # ----------------------------------------------------------------------------------------------------------------------
